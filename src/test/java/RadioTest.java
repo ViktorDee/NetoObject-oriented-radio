@@ -16,6 +16,30 @@ public class RadioTest {
     }
 
     @Test
+    public void shouldSetStationNumAboveMax() {
+        Radio rad = new Radio();
+
+        rad.setStationNum(12);
+
+        int expected = 0;
+        int actual = rad.getStationNum();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetStationNumBelowMin() {
+        Radio rad = new Radio();
+
+        rad.setStationNum(-1);
+
+        int expected = 0;
+        int actual = rad.getStationNum();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void shouldIncreaseStationNum() {
         Radio rad = new Radio();
 
@@ -76,6 +100,30 @@ public class RadioTest {
     }
 
     @Test
+    public void shouldNotSetVolumeBelowMin () {
+        Radio rad = new Radio();
+
+        rad.setCurrentVolume(-2);
+
+        int expected = 0;
+        int actual = rad.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotSetVolumeAboveMax () {
+        Radio rad = new Radio();
+
+        rad.setCurrentVolume(15);
+
+        int expected = 10;
+        int actual = rad.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void shouldIncreaseVolume () {
         Radio rad = new Radio();
 
@@ -89,7 +137,7 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldNotIncreaseVolumeIfTen () {
+    public void shouldNotIncreaseVolumeIfMax () {
         Radio rad = new Radio();
 
         rad.setCurrentVolume(10);
@@ -105,17 +153,17 @@ public class RadioTest {
     public void shouldLowerVolume () {
         Radio rad = new Radio();
 
-        rad.setCurrentVolume(10);
+        rad.setCurrentVolume(5);
         rad.lowerVolume();
 
-        int expected = 9;
+        int expected = 4;
         int actual = rad.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void shouldNotLowerVolumeIfZero () {
+    public void shouldNotLowerVolumeIfMin () {
         Radio rad = new Radio();
 
         rad.setCurrentVolume(0);
