@@ -1,53 +1,58 @@
 public class Radio {
 
-    public int stationNum;
+    private int stationNum;
+    private int currentVolume;
 
     public int getStationNum() {
         return stationNum;
     }
 
-    public void setStationNum(int newStationNum) {
-        if (newStationNum >= 0) {
-            if (newStationNum <= 9) {
-                stationNum = newStationNum;
-            }
-        }
-    }
-
-    public void nextStationNum(int next) {
-        if (next < 9) {
-            stationNum = next + 1;
-        }
-        if (next == 9) {
-            stationNum = 0;
-        }
-    }
-
-
-    public void prevStationNum(int prev) {
-        if (prev > 0) {
-            stationNum = prev - 1;
-        }
-        if (prev == 0) {
-            stationNum = 9;
-        }
-    }
-
-
-    public int currentVolume;
-
     public int getCurrentVolume() {
         return currentVolume;
     }
 
-    public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume >= 0) {
-            if (newCurrentVolume <= 10) {
-                currentVolume = newCurrentVolume;
-            } else {
-                currentVolume = 10;
-            }
+    public void setStationNum(int newStationNum) {
+        if (newStationNum < 0) {
+            return;
         }
+        if (newStationNum > 9) {
+            return;
+        }
+        stationNum = newStationNum;
+    }
+
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume < 0) {
+            return;
+        }
+        if (newCurrentVolume > 10) {
+            return;
+        }
+        currentVolume = newCurrentVolume;
+    }
+
+    public void nextStationNum() {
+        if (stationNum < 9) {
+            stationNum++;
+        } else {
+            stationNum = 0;
+        }
+    }
+
+    public void prevStationNum() {
+        if (stationNum > 0) {
+            stationNum--;
+        } else {
+            stationNum = 9;
+        }
+    }
+
+    public void setToMinVolume() {
+        currentVolume = 0;
+    }
+
+    public void setToMaxVolume() {
+        currentVolume = 10;
     }
 
     public void increaseVolume() {
