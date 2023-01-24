@@ -5,11 +5,11 @@ public class RadioTest {
 
     @Test
     public void shouldSetStationNum() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(30);
 
-        rad.setStationNum(6);
+        rad.setStationNum(29);
 
-        int expected = 6;
+        int expected = 29;
         int actual = rad.getStationNum();
 
         Assertions.assertEquals(expected, actual);
@@ -17,9 +17,9 @@ public class RadioTest {
 
     @Test
     public void shouldNotSetStationNumAboveMax() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(15);
 
-        rad.setStationNum(12);
+        rad.setStationNum(20);
 
         int expected = 0;
         int actual = rad.getStationNum();
@@ -41,21 +41,21 @@ public class RadioTest {
 
     @Test
     public void shouldIncreaseStationNum() {
-        Radio rad = new Radio();
-        rad.setStationNum(5);
+        Radio rad = new Radio(50);
+        rad.setStationNum(35);
 
         rad.nextStationNum();
 
-        int expected = 6;
+        int expected = 36;
         int actual = rad.getStationNum();
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void shouldSetStationNumToZeroIfMoreThanNine() {
-        Radio rad = new Radio();
-        rad.setStationNum(9);
+    public void shouldSetStationNumToZeroIfMoreThanMax() {
+        Radio rad = new Radio(50);
+        rad.setStationNum(49);
 
         rad.nextStationNum();
 
@@ -67,25 +67,25 @@ public class RadioTest {
 
     @Test
     public void shouldDecreaseStationNum() {
-        Radio rad = new Radio();
-        rad.setStationNum(3);
+        Radio rad = new Radio(50);
+        rad.setStationNum(49);
 
         rad.prevStationNum();
 
-        int expected = 2;
+        int expected = 48;
         int actual = rad.getStationNum();
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void shouldSetStationNumToNineIfLessThanZero() {
-        Radio rad = new Radio();
+    public void shouldSetStationNumToMaxIfLessThanZero() {
+        Radio rad = new Radio(150);
         rad.setStationNum(0);
 
         rad.prevStationNum();
 
-        int expected = 9;
+        int expected = 149;
         int actual = rad.getStationNum();
 
         Assertions.assertEquals(expected, actual);
@@ -95,9 +95,9 @@ public class RadioTest {
     public void shouldSetVolume() {
         Radio rad = new Radio();
 
-        rad.setCurrentVolume(3);
+        rad.setCurrentVolume(37);
 
-        int expected = 3;
+        int expected = 37;
         int actual = rad.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -119,7 +119,7 @@ public class RadioTest {
     public void shouldNotSetVolumeAboveMax() {
         Radio rad = new Radio();
 
-        rad.setCurrentVolume(15);
+        rad.setCurrentVolume(105);
 
         int expected = 0;
         int actual = rad.getCurrentVolume();
@@ -131,10 +131,10 @@ public class RadioTest {
     public void shouldIncreaseVolume() {
         Radio rad = new Radio();
 
-        rad.setCurrentVolume(2);
+        rad.setCurrentVolume(74);
         rad.increaseVolume();
 
-        int expected = 3;
+        int expected = 75;
         int actual = rad.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -144,10 +144,10 @@ public class RadioTest {
     public void shouldNotIncreaseVolumeIfMax() {
         Radio rad = new Radio();
 
-        rad.setCurrentVolume(10);
+        rad.setCurrentVolume(100);
         rad.increaseVolume();
 
-        int expected = 10;
+        int expected = 100;
         int actual = rad.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -157,10 +157,10 @@ public class RadioTest {
     public void shouldLowerVolume() {
         Radio rad = new Radio();
 
-        rad.setCurrentVolume(5);
+        rad.setCurrentVolume(44);
         rad.lowerVolume();
 
-        int expected = 4;
+        int expected = 43;
         int actual = rad.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -185,7 +185,7 @@ public class RadioTest {
 
         rad.setToMaxVolume();
 
-        int expected = 10;
+        int expected = 100;
         int actual = rad.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
