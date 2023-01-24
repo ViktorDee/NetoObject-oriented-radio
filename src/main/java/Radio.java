@@ -13,7 +13,6 @@ public class Radio {
     }
 
     public Radio() {
-       // stationsAmount = 10;
         maxStation = stationsAmount - 1;
     }
 
